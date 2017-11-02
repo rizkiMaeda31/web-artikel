@@ -40,11 +40,15 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import {HomeComponent} from "./modul/home/home.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {PostService} from "./service/post.service";
+import { TrenComponent } from './modul/tren/tren.component';
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TrenComponent
   ],
   imports: [
       ReactiveFormsModule,
@@ -81,6 +85,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
       MatTooltipModule,
       BrowserAnimationsModule,
       BrowserModule,
+      HttpModule,
       RouterModule.forRoot([
           {
               path: '',
@@ -94,7 +99,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
       ])
   ],
   providers: [
-
+      PostService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,26 @@
+<img src="assets/home.jpg" alt="home" class="home">
+<mat-grid-list cols="4" rowHeight="60px" style="background-color: #7fa0d5;display: block;">
+  <mat-grid-tile>
+    <a routerLink="/home">
+      <img class="" src="assets/terbaru.png" alt="Terbaru"
+           style="max-width: 100%;max-height: 45px;height: auto"/> </a>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <a routerLink="/tren">
+      <img class="" src="assets/tren.png" alt="Tren"
+           style="max-width: 100%;max-height: 45px;height: auto"/> </a>
+  </mat-grid-tile>
+</mat-grid-list>
+<ul class="list-news-thumbnail">
+  <li *ngFor="let post of posts.getPost()">
+    <div class="date-news-thumbnail">{{post.created_at.getDay() + 1}} <span>{{post.created_at.getMonth() + 1}}</span></div>
+    <div class="data-news-thumbnail">
+      <div class="title-news-thumbnail">
+        {{post.title}}
+      </div>
+      <div class="summary-news-thumbnail">
+        {{post.content.substr(0,100)}}
+      </div>
+    </div>
+  </li>
+</ul>
