@@ -11,9 +11,10 @@ export class PostService {
 
     async getPost(): Promise< Array<Post> >  {
         const result = new Array<Post>();
-        await this.http.get(this.apiUrl)
+        await this.http.get('assets/dummy-post.json')
             .map((res: Response) => res.json())
             .subscribe(data => {
+                data.sort((n1,n2) => (Date.parse(n1.created_at) > Date.parse(n2.created_at)) ? -1 : 1);
                 console.log(data);
                 data.forEach(post => {
                     result.push(new Post(post.title, post.content, post.created_at));
