@@ -9,17 +9,23 @@ export class PostService {
     private apiUrl = 'https://falsesilver.me/fiesto/public/api/post-all' ;
     constructor(private http: Http) { }
 
-    async getPost(): Promise< Array<Post> >  {
+    getPost(): Array<Post>  {
+        if(this.posts)
+        {
+            console.log('ada');
+            return this.posts;
+        }
         const result = new Array<Post>();
-        await this.http.get('assets/dummy-post.json')
+        this.http.get('assets/dummy-post.json')
             .map((res: Response) => res.json())
             .subscribe(data => {
                 data.sort((n1,n2) => (Date.parse(n1.created_at) > Date.parse(n2.created_at)) ? -1 : 1);
-                console.log(data);
+                this.posts = data;
+                console.log('gak ada');
                 data.forEach(post => {
-                    result.push(new Post(post.title, post.content, post.created_at));
+                    result.push(new Post(post.id, post.title, post.content, post.created_at));
                 });
             });
-        return Promise.resolve(result);
+        return result;
     }
 }

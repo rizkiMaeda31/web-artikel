@@ -1,0 +1,22 @@
+<div class="cst-nav-toolbar" style="z-index: 10000">
+  <mat-toolbar class="cst-btn-toolbar">
+    <span><a class="cst-navigation-color" clickGoBack ><mat-icon>keyboard_backspace</mat-icon></a></span>
+    <span class="cst-title-form">{{currentPost.title}}</span>
+  </mat-toolbar>
+</div>
+<div class="cst-display-content">
+  <mat-card >
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{currentPost.title}}</h2>
+      </mat-card-title>
+      <mat-card-subtitle><span>{{currentPost.created_at}}</span></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{currentPost.content}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+

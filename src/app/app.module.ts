@@ -43,12 +43,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PostService} from "./service/post.service";
 import { TrenComponent } from './modul/tren/tren.component';
 import {HttpModule} from "@angular/http";
+import { ArchivesComponent } from './modul/archives/archives.component';
+import {ClickGoBack} from "./directive/click-go-back";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TrenComponent
+    TrenComponent,
+    ArchivesComponent,
+    ClickGoBack
   ],
   imports: [
       ReactiveFormsModule,
@@ -95,6 +99,14 @@ import {HttpModule} from "@angular/http";
           {
               path: 'home',
               component: HomeComponent
+          },
+          {
+              path: 'tren',
+              component: TrenComponent
+          },
+          {
+              path: 'archives/:date/:id',
+              component: ArchivesComponent
           }
       ])
   ],
