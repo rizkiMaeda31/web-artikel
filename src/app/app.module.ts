@@ -45,6 +45,9 @@ import { TrenComponent } from './modul/tren/tren.component';
 import {HttpModule} from "@angular/http";
 import { ArchivesComponent } from './modul/archives/archives.component';
 import {ClickGoBack} from "./directive/click-go-back";
+import { AdminComponent } from './modul/admin/admin.component';
+import {LoginService} from "./service/login.service";
+import { PostManagementComponent } from './modul/post-management/post-management.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import {ClickGoBack} from "./directive/click-go-back";
     HomeComponent,
     TrenComponent,
     ArchivesComponent,
-    ClickGoBack
+    ClickGoBack,
+    AdminComponent,
+    PostManagementComponent
   ],
   imports: [
       ReactiveFormsModule,
@@ -107,11 +112,20 @@ import {ClickGoBack} from "./directive/click-go-back";
           {
               path: 'archives/:date/:id',
               component: ArchivesComponent
+          },
+          {
+              path: 'admin',
+              component: AdminComponent
+          },
+          {
+              path: 'post-management',
+              component: PostManagementComponent
           }
       ])
   ],
   providers: [
-      PostService
+      PostService,
+      LoginService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,15 @@
+<div class="gambar-atas login-page">
+  <img src="assets/login-image.jpg"/>
+</div>
+<h1>Web Artikel</h1>
+<form class="login-form">
+  <mat-form-field class="login-full-width">
+    <input matInput placeholder="Email" [(ngModel)]="email" name="email">
+  </mat-form-field>
+  <mat-form-field class="login-full-width">
+    <input matInput placeholder="Password" [(ngModel)]="pass" name="password">
+  </mat-form-field>
+  <div  class="button-row">
+    <button mat-raised-button color="warn" (click)="onClick()">Login</button>
+  </div>
+</form>
