@@ -235,8 +235,8 @@ label.mat-input-placeholder{
 .gambar-atas img{
     position:absolute;
     height:100%;
-    width:auto;
-    left:-15%;
+    width:100%;
+    /*left:-15%;*/
     top:0;
 }
 .gambar-atas.login-page img {

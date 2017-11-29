@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {PostService} from "../../service/post.service";
-import {ActivatedRoute} from "@angular/router";
-import {Post} from "../../class/Post";
+import {PostService} from '../../service/post.service';
+import {ActivatedRoute} from '@angular/router';
+import {Post} from '../../class/Post';
 
 @Component({
   selector: 'app-archives',
@@ -15,7 +15,7 @@ export class ArchivesComponent implements OnInit {
   constructor(posts: PostService,
               route: ActivatedRoute) {
     let t_ca;
-    let t_id
+    let t_id;
     route.params.subscribe(p => {
         t_ca = p['date'];
         t_id = Number(p['id']);

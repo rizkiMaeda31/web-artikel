@@ -38,16 +38,22 @@ import {
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import {HomeComponent} from "./modul/home/home.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {PostService} from "./service/post.service";
+import {HomeComponent} from './modul/home/home.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PostService} from './service/post.service';
 import { TrenComponent } from './modul/tren/tren.component';
-import {HttpModule} from "@angular/http";
+import {HttpModule} from '@angular/http';
 import { ArchivesComponent } from './modul/archives/archives.component';
-import {ClickGoBack} from "./directive/click-go-back";
+import {ClickGoBack} from './directive/click-go-back';
 import { AdminComponent } from './modul/admin/admin.component';
-import {LoginService} from "./service/login.service";
+import {LoginService} from './service/login.service';
 import { PostManagementComponent } from './modul/post-management/post-management.component';
+import { PostEditComponent } from './modul/post-edit/post-edit.component';
+import {SubscriptionService} from './service/subscription.service';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -57,7 +63,8 @@ import { PostManagementComponent } from './modul/post-management/post-management
     ArchivesComponent,
     ClickGoBack,
     AdminComponent,
-    PostManagementComponent
+    PostManagementComponent,
+    PostEditComponent
   ],
   imports: [
       ReactiveFormsModule,
@@ -120,12 +127,17 @@ import { PostManagementComponent } from './modul/post-management/post-management
           {
               path: 'post-management',
               component: PostManagementComponent
+          },
+          {
+              path: 'edit/:date/:id',
+              component: PostEditComponent
           }
       ])
   ],
   providers: [
       PostService,
-      LoginService
+      LoginService,
+      SubscriptionService
   ],
   bootstrap: [AppComponent]
 })
