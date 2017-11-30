@@ -9,6 +9,6 @@ import {PostService} from "../../service/post.service";
 })
 export class TrenComponent {
 
-  constructor(private posts: PostService) { }
+  constructor(public posts: PostService) { }
 
 }

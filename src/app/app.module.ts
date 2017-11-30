@@ -50,7 +50,7 @@ import {LoginService} from './service/login.service';
 import { PostManagementComponent } from './modul/post-management/post-management.component';
 import { PostEditComponent } from './modul/post-edit/post-edit.component';
 import {SubscriptionService} from './service/subscription.service';
-
+import { QuillModule } from 'ngx-quill'
 
 
 
@@ -102,6 +102,7 @@ import {SubscriptionService} from './service/subscription.service';
       BrowserAnimationsModule,
       BrowserModule,
       HttpModule,
+      QuillModule,
       RouterModule.forRoot([
           {
               path: '',

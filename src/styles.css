@@ -210,15 +210,7 @@ ul.list-news-thumbnail {
     margin:20px;
 }
 
-button {
-    width: calc(100% - 60px) !important;
-    border-radius: 30px !important;
-    text-transform:uppercase;
-    background: #fea142 !important;
-    font-size: 14pt !important;
-    padding: 4px 0 !important;
-    /* border: 1px solid #000 !important; */
-}
+
 label.mat-input-placeholder{
     color: #00c5ae !important;
     text-transform: uppercase;
