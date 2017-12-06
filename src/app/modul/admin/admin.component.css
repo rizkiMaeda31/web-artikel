@@ -45,3 +45,8 @@ button {
     padding: 4px 0 !important;
     /* border: 1px solid #000 !important; */
 }
+.danger {
+    text-decoration: bold;
+    color: red;
+    text-align: center;
+}

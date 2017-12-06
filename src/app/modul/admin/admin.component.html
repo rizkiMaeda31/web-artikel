@@ -7,8 +7,11 @@
     <input matInput placeholder="Email" [(ngModel)]="email" name="email">
   </mat-form-field>
   <mat-form-field class="login-full-width">
-    <input matInput placeholder="Password" [(ngModel)]="pass" name="password">
+    <input matInput type="password" placeholder="Password" [(ngModel)]="pass" name="password">
   </mat-form-field>
+  <div class="danger">
+    {{message}}
+  </div>
   <div  class="button-row">
     <button mat-raised-button color="warn" (click)="onClick()">Login</button>
   </div>

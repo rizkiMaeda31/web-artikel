@@ -3,10 +3,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../service/post.service';
 import {Post} from '../../class/Post';
 import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
-import 'rxjs/add/operator/debounceTime'
+import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatSnackBar} from "@angular/material";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 // override p with div tag
 // import Quill from 'quill';
@@ -34,8 +34,9 @@ import {MatSnackBar} from "@angular/material";
 export class PostEditComponent implements OnInit {
   current_post: Post = null;
   form: FormGroup;
+  temp: string = '';
 
-  constructor(posts: PostService,
+  constructor(private posts: PostService,
               route: ActivatedRoute,
               fb: FormBuilder,
               public router: Router,
@@ -47,29 +48,41 @@ export class PostEditComponent implements OnInit {
       });
       this.current_post = posts.getAPost(t_id);
       if (this.current_post == null) router.navigate(['post-management']);
-      this.form=fb.group({editor: [this.current_post.content]});
+      this.form = fb.group({editor: [this.current_post.content]});
+      this.temp = this.current_post.content;
   }
 
   ngOnInit() {
   }
 
-  @ViewChild('editor') editor: QuillEditorComponent
+  @ViewChild('editor') editor: QuillEditorComponent;
 
   setFocus($event: any) {
       $event.focus();
   }
 
   contentChanged($event: any) {
-      console.log($event.html);
-      console.log(this.form.controls['editor'].value);
+      this.current_post.content = this.form.controls['editor'].value;
   }
-
+  cancel(){
+      this.router.navigate(['post-management']);
+  }
   click() {
-      console.log(this.form.controls['editor'].value);
-      this.snackBar.open(this.form.controls['editor'].value, 'x', {
-          duration: 2000,
-      }).afterDismissed().subscribe(() => {
-          this.router.navigate(['post-management']);
+      this.posts.updatePost(this.current_post)
+          .then(response => {
+              this.snackBar.open('Update sukses', 'x', {
+                  duration: 2000,
+              }).afterDismissed().subscribe(() => {
+                  this.router.navigate(['post-management']);
+              });
+          })
+      .catch (response => {
+          this.current_post.content = this.temp;
+
+          this.snackBar.open('Update Gagal', 'x', {
+              duration: 2000,
+          });
       });
+
   }
 }

@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class AdminComponent implements OnInit {
     email= '';
     pass= '';
-    message = 'test';
+    message = '';
   constructor(
       public router: Router,
       public users: LoginService
@@ -19,13 +19,13 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
   }
   onClick () {
-      // this.users.attempt(this.email, this.pass).then(t => {
-      //     if (t._body === '[]') {
-      //         this.message = 'username atau password salah!';
-      //     }else {
-      //         this.router.navigate(['post-management']);
-      //     }
-      // });
-      this.router.navigate(['post-management']);
+      this.users.attempt(this.email, this.pass).then(t => {
+          localStorage.user = t._body;
+          this.router.navigate(['post-management']);
+      })
+          .catch(response =>{
+              console.log(response);
+              this.message = 'username atau password salah!';
+          });
   }
 }

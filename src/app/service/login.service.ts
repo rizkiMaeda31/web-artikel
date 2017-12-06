@@ -5,7 +5,7 @@ import {Http} from '@angular/http';
 @Injectable()
 export class LoginService {
     private user: User = null;
-    private url = 'http://ptamp.aindo.com/api/api-login.php';
+    private url = 'http://fsretail.tk/fiesto/public/api/login';
     constructor(private http: Http) {
         if (localStorage.user !== undefined){
             this.user = JSON.parse(localStorage.user) as User;
@@ -15,7 +15,7 @@ export class LoginService {
     attempt (username: string, password: string): any {
         //call an api to authenticate
         let flag = false,finish = false;
-        let result = this.http.post(this.url, {username : username, password: password}).toPromise();
+        let result = this.http.post(this.url, {email : username, password: password}).toPromise();
         return Promise.resolve(result);
     }
 

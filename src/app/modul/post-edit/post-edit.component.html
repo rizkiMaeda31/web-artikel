@@ -16,6 +16,7 @@
       <!--</span>-->
     <!--</div>-->
   <!--</quill-editor>-->
+  <input type="text" [(ngModel)]="current_post.title">
   <form [formGroup]="form">
     <quill-editor #editor [style]="{height: '200px'}"
                   (onEditorCreated)="setFocus($event)"
@@ -23,7 +24,7 @@
                   [style.display]="hide ? 'none' : 'block'"
                   formControlName="editor"
     ></quill-editor>
-    <button mat-button routerLink="/post-management">Cancel</button>
+    <button mat-button (click)="cancel()">Cancel</button>
     <button mat-button (click)="click()">Save</button>
   </form>
 
