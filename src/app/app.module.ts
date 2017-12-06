@@ -50,7 +50,8 @@ import {LoginService} from './service/login.service';
 import { PostManagementComponent } from './modul/post-management/post-management.component';
 import { PostEditComponent } from './modul/post-edit/post-edit.component';
 import {SubscriptionService} from './service/subscription.service';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { PostInsertComponent } from './modul/post-insert/post-insert.component'
 
 
 
@@ -64,7 +65,8 @@ import { QuillModule } from 'ngx-quill'
     ClickGoBack,
     AdminComponent,
     PostManagementComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostInsertComponent
   ],
   imports: [
       ReactiveFormsModule,
@@ -132,6 +134,10 @@ import { QuillModule } from 'ngx-quill'
           {
               path: 'edit/:date/:id',
               component: PostEditComponent
+          },
+          {
+              path: 'insert',
+              component: PostInsertComponent
           }
       ])
   ],

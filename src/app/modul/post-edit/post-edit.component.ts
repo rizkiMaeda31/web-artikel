@@ -63,6 +63,7 @@ export class PostEditComponent implements OnInit {
 
   contentChanged($event: any) {
       this.current_post.content = this.form.controls['editor'].value;
+      // console.log($event.text);
   }
   cancel(){
       this.router.navigate(['post-management']);

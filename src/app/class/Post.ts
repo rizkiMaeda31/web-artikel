@@ -4,6 +4,10 @@ export class Post {
   title: string;
   content: string;
   image: string;
+  content_html: string;
+  content_text: string;
+  category: string;
+  viewCount: number;
 
     constructor(id: number, title: string, content: string, created_at: Date) {
         this.id = id;
