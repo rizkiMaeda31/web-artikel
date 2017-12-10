@@ -1,7 +1,7 @@
 <div class="cst-nav-toolbar" style="z-index: 10000">
   <mat-toolbar class="cst-btn-toolbar">
     <span><a class="cst-navigation-color" clickGoBack ><mat-icon>keyboard_backspace</mat-icon></a></span>
-    <span class="cst-title-form">Post Management</span>
+    <span class="cst-title-form">Article Editing</span>
   </mat-toolbar>
 </div>
 <div class="cst-display-content" style="margin-top: 5px; background-color: white">
@@ -16,7 +16,12 @@
       <!--</span>-->
     <!--</div>-->
   <!--</quill-editor>-->
-  <input type="text" [(ngModel)]="current_post.title">
+  <mat-form-field class="title">
+    <input matInput [(ngModel)]="current_post.title" placeholder="Title" name="title_article">
+  </mat-form-field>
+  <mat-form-field class="title">
+    <input matInput [(ngModel)]="current_post.category" placeholder="Category" name="cactegory_article">
+  </mat-form-field>
   <form [formGroup]="form">
     <quill-editor #editor [style]="{height: '200px'}"
                   (onEditorCreated)="setFocus($event)"

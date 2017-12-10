@@ -3,8 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../service/post.service';
 import {Post} from '../../class/Post';
 import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 
@@ -34,13 +32,14 @@ import {MatSnackBar} from '@angular/material';
 export class PostEditComponent implements OnInit {
   current_post: Post = null;
   form: FormGroup;
-  temp: string = '';
+  temp = '';
 
-  constructor(private posts: PostService,
+  constructor(public posts: PostService,
               route: ActivatedRoute,
               fb: FormBuilder,
               public router: Router,
               public snackBar: MatSnackBar) {
+      if (localStorage.user === undefined) router.navigate(['login']);
       let t_id;
       route.params.subscribe(p => {
           t_id = Number(p['id']);
@@ -63,12 +62,15 @@ export class PostEditComponent implements OnInit {
 
   contentChanged($event: any) {
       this.current_post.content = this.form.controls['editor'].value;
+      const contentHTML = this.form.controls['editor'].value;
+      const contentText = $event.text;
       // console.log($event.text);
   }
-  cancel(){
+  cancel() {
       this.router.navigate(['post-management']);
   }
   click() {
+      // if(this.current_post.title)
       this.posts.updatePost(this.current_post)
           .then(response => {
               this.snackBar.open('Update sukses', 'x', {
@@ -84,6 +86,5 @@ export class PostEditComponent implements OnInit {
               duration: 2000,
           });
       });
-
   }
 }

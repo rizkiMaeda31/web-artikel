@@ -14,7 +14,9 @@ export class AdminComponent implements OnInit {
   constructor(
       public router: Router,
       public users: LoginService
-  ) { }
+  ) {
+      if (localStorage.user !== undefined) router.navigate(['post-management']);
+  }
 
   ngOnInit() {
   }

@@ -1,7 +1,7 @@
 <div class="cst-nav-toolbar" style="z-index: 10000">
     <mat-toolbar class="cst-btn-toolbar">
         <span><a class="cst-navigation-color" clickGoBack ><mat-icon>keyboard_backspace</mat-icon></a></span>
-        <span class="cst-title-form">Post Management</span>
+        <span class="cst-title-form">Article Management</span>
     </mat-toolbar>
 </div>
 <div class="cst-display-content" style="margin-top: 5px">
@@ -14,17 +14,19 @@
                 <th>Date</th>
                 <th>Category</th>
                 <th>Views</th>
+                <th>Function</th>
             </tr>
             <tr *ngFor="let item of posts">
                 <td>{{item.id}}</td>
                 <td><a routerLink="/edit/{{item.created_at}}/{{item.id}}">{{item.title}}</a></td>
                 <td>{{item.content.substr(0,100)}}</td>
                 <td>{{item.created_at}}</td>
-                <td></td>
-                <td></td>
+                <td>{{item.category}}</td>
+                <td>{{item.viewCount}}</td>
+                <td><button mat-raised-button (click)="deleteArticle(item.id)" style="width: 20px;">Delete</button></td>
             </tr>
         </table>
         <br>
-        <button mat-button routerLink="/insert">Tambah Post</button>
+        <button mat-button routerLink="/insert">Create New Article</button>
     <!--</form>-->
 </div>

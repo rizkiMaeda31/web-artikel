@@ -37,4 +37,7 @@ export class PostService {
     getAPost(id: number): Post {
         return (this.posts) ? this.posts.find(p => p.id === id) : null;
     }
+    deletePost(id: number): Boolean {
+        return true;
+    }
 }
