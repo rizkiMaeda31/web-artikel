@@ -17,12 +17,12 @@
                 <th>Function</th>
             </tr>
             <tr *ngFor="let item of posts">
-                {{item}}
+                <!--{{item}}-->
                 <td>{{item.id}}</td>
-                <td><a routerLink="/edit/{{item.created_at}}/{{item.id}}">{{item.title}}</a></td>
-                <td><div [innerHTML]="item.content"></div></td>
-                <td>{{item.created_at}}</td>
-                <td>{{item.category.name}}</td>
+                <td><a routerLink="/edit/{{item.published_at | date: 'yyyy-MM-dd'}}/{{item.id}}">{{item.title}}</a></td>
+                <td [innerHTML]="item.content.substr(0, 100)"></td>
+                <td>{{item.published_at | date: 'yyyy-MM-dd'}}</td>
+                <td>{{ !item.category.name ? item.category : item.category.name}}</td>
                 <td>{{item.view}}</td>
                 <td>
                     <button mat-raised-button (click)="deleteArticle(item.id)" class="delete">

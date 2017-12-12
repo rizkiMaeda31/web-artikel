@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../../service/post.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Post} from '../../class/Post';
 
 @Component({
@@ -13,7 +13,8 @@ export class ArchivesComponent implements OnInit {
   currentPost: Post = null;
 
   constructor(posts: PostService,
-              route: ActivatedRoute) {
+              route: ActivatedRoute,
+              router: Router) {
     let t_ca;
     let t_id;
     route.params.subscribe(p => {
@@ -23,6 +24,9 @@ export class ArchivesComponent implements OnInit {
     });
     // console.log(posts.getPost());
     this.currentPost = posts.getPost().find(d => d.created_at == t_ca && d.id == t_id);
+    if (this.currentPost == null) router.navigate(['home']);
+    this.currentPost.view++;
+    posts.updatePost(this.currentPost).then(response => console.log(response)).catch(response => console.log('fail'));
     console.log(this.currentPost);
   }
 

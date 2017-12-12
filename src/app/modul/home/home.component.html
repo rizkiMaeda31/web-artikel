@@ -22,8 +22,8 @@
                 </mat-card-title>
                 <mat-card-subtitle>{{post.created_at}}</mat-card-subtitle>
             </mat-card-header>
-            <mat-card-content>
-                {{post.content.substr(0,100)}}
+            <mat-card-content [innerHTML]="post.content.substr(0,100)">
+                <!--{{post.content.substr(0,100)}}-->
             </mat-card-content>
         </mat-card>
     </div>

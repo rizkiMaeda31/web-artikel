@@ -4,18 +4,18 @@
     <span class="cst-title-form">Article Editing</span>
   </mat-toolbar>
 </div>
-<div class="cst-display-content" style="margin-top: 5px; background-color: white">
-  <div class="col-12 p-4" style="background-color: white">
-    <div class="row">
+<div class="cst-display-content" style="background-color: white">
+  <div class="col-12" style="background-color: white">
+    <!--<div class="row">-->
       <!--title-->
       <div class="form-group col-12">
         <label class="col-form-label" for="TitleInput">Title</label>
         <input type="text"  [(ngModel)]="current_post.title" class="form-control" id="TitleInput" placeholder="Title">
       </div>
-    </div>
+    <!--</div>-->
     <div class="form-group col-12">
       <label class="col-form-label" for="Category">Category</label>
-      {{options}}
+      <!--{{options}}-->
       <input [(ngModel)]="current_post.category.name"
              type="text" class="form-control"
              aria-label="Number" id="Category"

@@ -15,7 +15,8 @@ export class PostService {
             title: post.title,
             content: post.content,
             category: post.category.name,
-            published_at: post.published_at
+            published_at: post.published_at,
+            view: post.view
         }).toPromise();
         return Promise.resolve(result);
     }

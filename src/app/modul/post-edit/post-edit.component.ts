@@ -10,24 +10,6 @@ import {startWith} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/startWith";
 
-// override p with div tag
-// import Quill from 'quill';
-// const Parchment = Quill.import('parchment');
-// let Block = Parchment.query('block');
-
-// Block.tagName = 'DIV';
-// or class NewBlock extends Block {}; NewBlock.tagName = 'DIV';
-// Quill.register(Block /* or NewBlock */, true);
-
-// import Counter from './counter';
-// Quill.register('modules/counter', Counter)
-
-// Add fonts to whitelist
-// var Font = Quill.import('formats/font');
-// We do not add Aref Ruqaa since it is the default
-// Font.whitelist = ['mirza', 'aref'];
-// Quill.register(Font, true);
-
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
@@ -57,13 +39,13 @@ export class PostEditComponent implements OnInit {
           // this.currentPost = posts.posts.find(d => d.created_at == t_ca && d.id == t_id);
       });
       this.current_post = posts.getAPost(t_id);
-      this.tempDate = new Date();
       console.log(this.current_post);
       if (this.current_post == null){
           router.navigate(['post-management']);
       }
       this.form = fb.group({editor: [this.current_post.content]});
       this.temp = this.current_post.content;
+      this.tempDate = this.current_post.published_at;
       this.options = postService.getCategory();
       this.options = this.options.map(data => data.name);
       this.options = this.options.filter(function(item, pos, arr){
