@@ -3,8 +3,9 @@ import {PostService} from '../../service/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
 import {MatSnackBar} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Post} from '../../class/Post';
+
 
 @Component({
   selector: 'app-post-insert',
@@ -14,18 +15,25 @@ import {Post} from '../../class/Post';
 export class PostInsertComponent implements OnInit {
   current_post: Post = null;
   form: FormGroup;
-  title = '';
-  content_text = '';
-  content_html = '';
-  category = '';
-
+  myControl: FormControl = new FormControl();
+  newPost: Post = new Post(0, '', '', '' , 0);
+  options = [];
+  picker:any;
   constructor(public posts: PostService,
               // route: ActivatedRoute,
               fb: FormBuilder,
               public router: Router,
-              public snackBar: MatSnackBar) {
+              public snackBar: MatSnackBar,
+              private postService: PostService
+              ) {
       if (localStorage.user === undefined) router.navigate(['login']);
-      this.form = fb.group({editor: [this.content_text]});
+      this.form = fb.group({editor: [this.newPost.content]});
+      this.options = postService.getCategory();
+      this.options = this.options.map(data => data.name);
+      this.options = this.options.filter(function(item, pos, arr){
+          return pos == arr.indexOf(item);
+      });
+
   }
 
   ngOnInit() {
@@ -38,15 +46,21 @@ export class PostInsertComponent implements OnInit {
   }
 
   contentChanged($event: any) {
-      this.content_text = $event.text;
-      this.content_html = this.form.controls['editor'].value;
+      this.newPost.content = this.form.controls['editor'].value;
       // console.log($event.text);
       // console.log(this.form.controls['editor'].value);
   }
   cancel() {
       this.router.navigate(['post-management']);
   }
-  click() {
+  submit() {
+      this.postService.addPost(this.newPost)
+          .then(response => {
+            console.log(response);
+          })
+          .catch (response => {
+            console.log(response);
+          });
       // if(this.current_post.title)
       // this.posts.updatePost(this.current_post)
       //     .then(response => {

@@ -8,17 +8,28 @@ export class PostService {
     posts: Post[] = null;
     private apiUrl = 'https://falsesilver.me/fiesto/public/api/post-all' ;
     private apiUrlUpdate = 'https://falsesilver.me/fiesto/public/api/post/' ;
+    private apiUrlAdd = 'https://falsesilver.me/fiesto/public/api/post/add' ;
     constructor(private http: Http) { }
     updatePost(post: Post): any {
-        let result = this.http.put(this.apiUrlUpdate + post.id,{
+        const result = this.http.put(this.apiUrlUpdate + post.id, {
             title: post.title,
-            content: post.content
-        }).toPromise()
+            content: post.content,
+            category: post.category.name,
+            published_at: post.published_at
+        }).toPromise();
         return Promise.resolve(result);
     }
-    getPost(): Array<Post>  {
-        if (this.posts)
-        {
+
+    addPost(post: Post): any {
+        return Promise.resolve(this.http.post(this.apiUrlAdd, post).toPromise());
+    }
+    getCategory(): Array<string> {
+        return this.posts? this.posts.map((data) => {
+            return data.category;
+        }) : [];
+    }
+    getPost(): Array<Post> {
+        if (this.posts) {
             return this.posts;
         }
         const result = new Array<Post>();
@@ -29,7 +40,9 @@ export class PostService {
                 this.posts = data;
                 // console.log('gak ada');
                 data.forEach(post => {
-                    result.push(new Post(post.id, post.title, post.content, post.created_at));
+                    result.push(new Post(post.id, post.title,
+                        post.content, post.category.name,
+                        post.view, post.created_at, post.published_at));
                 });
             });
         return result;

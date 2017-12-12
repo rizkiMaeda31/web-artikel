@@ -17,16 +17,21 @@
                 <th>Function</th>
             </tr>
             <tr *ngFor="let item of posts">
+                {{item}}
                 <td>{{item.id}}</td>
                 <td><a routerLink="/edit/{{item.created_at}}/{{item.id}}">{{item.title}}</a></td>
-                <td>{{item.content.substr(0,100)}}</td>
+                <td><div [innerHTML]="item.content"></div></td>
                 <td>{{item.created_at}}</td>
-                <td>{{item.category}}</td>
-                <td>{{item.viewCount}}</td>
-                <td><button mat-raised-button (click)="deleteArticle(item.id)" style="width: 20px;">Delete</button></td>
+                <td>{{item.category.name}}</td>
+                <td>{{item.view}}</td>
+                <td>
+                    <button mat-raised-button (click)="deleteArticle(item.id)" class="delete">
+                        <i class="fa fa-trash fa-lg"></i>
+                    </button>
+                </td>
             </tr>
         </table>
         <br>
-        <button mat-button routerLink="/insert">Create New Article</button>
+        <button mat-button routerLink="/insert" class="submit">Create New Article</button>
     <!--</form>-->
 </div>

@@ -8,17 +8,23 @@ table th {
     background-color: black;
     color: white;
 }
-button {
+.delete{
     width: calc(100% - 60px) !important;
     /*height: 80% !important;*/
     border-radius: 30px !important;
     text-transform:uppercase;
-    background: #fea142 !important;
+    background: crimson;
     font-size: 14pt !important;
-    padding: 4px 0 !important;
-    margin-left: 3.75%;
+    margin-left: 10px;
     /* border: 1px solid #000 !important; */
 }
+.submit {
+    border-radius: 30px !important;
+    background-color: #ed9c55;
+    font-size: 14pt !important;
+    width: 100%;
+}
+
 .mat-raised-button {
 
 }

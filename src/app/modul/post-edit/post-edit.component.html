@@ -5,32 +5,44 @@
   </mat-toolbar>
 </div>
 <div class="cst-display-content" style="margin-top: 5px; background-color: white">
-  <!--{{current_post.content}}-->
-  <!--<quill-editor [style]="{height: '200px'}" (onEditorCreated)="setFocus($event)">-->
-    <!--<div quill-editor-toolbar>-->
-      <!--<span class="ql-formats">-->
-        <!--<button type="button" class="ql-bold"></button>-->
-        <!--<button type="button" class="ql-italic"></button>-->
-        <!--<button type="button" class="ql-underline"></button>-->
-        <!--<button type="button" class="ql-strike"></button>-->
-      <!--</span>-->
-    <!--</div>-->
-  <!--</quill-editor>-->
-  <mat-form-field class="title">
-    <input matInput [(ngModel)]="current_post.title" placeholder="Title" name="title_article">
-  </mat-form-field>
-  <mat-form-field class="title">
-    <input matInput [(ngModel)]="current_post.category" placeholder="Category" name="cactegory_article">
-  </mat-form-field>
-  <form [formGroup]="form">
+  <div class="col-12 p-4" style="background-color: white">
+    <div class="row">
+      <!--title-->
+      <div class="form-group col-12">
+        <label class="col-form-label" for="TitleInput">Title</label>
+        <input type="text"  [(ngModel)]="current_post.title" class="form-control" id="TitleInput" placeholder="Title">
+      </div>
+    </div>
+    <div class="form-group col-12">
+      <label class="col-form-label" for="Category">Category</label>
+      {{options}}
+      <input [(ngModel)]="current_post.category.name"
+             type="text" class="form-control"
+             aria-label="Number" id="Category"
+             [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filtered | async" [value]="state">
+          {{ state }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </div>
+  Current Published date : {{current_post.published_at | date: 'yyyy-MM-dd'}}
+  <div class="form-group col-12">
+    <label class="col-form-label" for="PublishedAt">Published At</label>
+    <input type="date" [(ngModel)]="tempDate" class="form-control" id="PublishedAt">
+  </div>
+  <form [formGroup]="form" class="form-group  col-12">
     <quill-editor #editor [style]="{height: '200px'}"
                   (onEditorCreated)="setFocus($event)"
                   (onContentChanged)="contentChanged($event)"
                   [style.display]="hide ? 'none' : 'block'"
                   formControlName="editor"
     ></quill-editor>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button (click)="click()">Save</button>
+    <div class="form-group mx-auto">
+      <button class="btn btn-primary btn-lg m-3" (click)="click()">Save</button>
+      <button class="btn btn-danger btn-lg m-3" (click)="cancel()">Cancel</button>
+    </div>
   </form>
 
 </div>

@@ -11,6 +11,7 @@ import {
     MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatNativeDateModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -34,7 +35,6 @@ import {
     MatTooltipModule,
     MatStepperModule,
 } from '@angular/material';
-
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -72,6 +72,7 @@ import { PostInsertComponent } from './modul/post-insert/post-insert.component';
       ReactiveFormsModule,
       FormsModule,
       MatAutocompleteModule,
+      MatNativeDateModule,
       MatButtonModule,
       MatButtonToggleModule,
       MatCardModule,
