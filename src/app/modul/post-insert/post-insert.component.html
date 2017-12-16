@@ -14,7 +14,7 @@
 
       <div class="form-group col-12">
         <label class="col-form-label" for="Category">Category</label>
-          <input [(ngModel)]="newPost.category" type="text" class="form-control" aria-label="Number" id="Category" [formControl]="myControl" [matAutocomplete]="auto">
+          <input [(ngModel)]="newPost.category" type="text" class="form-control" aria-label="Number" id="Category" [formControl]="myControl" [matAutocomplete]="auto" placeholder="Category">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of options" [value]="option">
               {{ option }}

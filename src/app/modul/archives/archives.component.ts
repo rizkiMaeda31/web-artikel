@@ -23,8 +23,9 @@ export class ArchivesComponent implements OnInit {
         // this.currentPost = posts.posts.find(d => d.created_at == t_ca && d.id == t_id);
     });
     // console.log(posts.getPost());
-    this.currentPost = posts.getPost().find(d => d.created_at == t_ca && d.id == t_id);
+    this.currentPost = posts.getAPost(t_id); // .find(d => d.created_at == t_ca && d.id == t_id);
     if (this.currentPost == null) router.navigate(['home']);
+    // console.log(this.currentPost);
     this.currentPost.view++;
     posts.updatePost(this.currentPost).then(response => console.log(response)).catch(response => console.log('fail'));
     console.log(this.currentPost);

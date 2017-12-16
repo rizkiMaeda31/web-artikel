@@ -9,6 +9,8 @@ export class PostService {
     private apiUrl = 'https://falsesilver.me/fiesto/public/api/post-all' ;
     private apiUrlUpdate = 'https://falsesilver.me/fiesto/public/api/post/' ;
     private apiUrlAdd = 'https://falsesilver.me/fiesto/public/api/post/add' ;
+    isTren = false;
+
     constructor(private http: Http) { }
     updatePost(post: Post): any {
         const result = this.http.put(this.apiUrlUpdate + post.id, {
@@ -25,14 +27,15 @@ export class PostService {
         return Promise.resolve(this.http.post(this.apiUrlAdd, post).toPromise());
     }
     getCategory(): Array<string> {
-        return this.posts? this.posts.map((data) => {
+        return this.posts ? this.posts.map((data) => {
             return data.category;
         }) : [];
     }
     getPost(): Array<Post> {
-        if (this.posts) {
+        if (this.posts && !this.isTren) {
             return this.posts;
         }
+        this.isTren = false;
         const result = new Array<Post>();
         this.http.get(this.apiUrl)
             .map((res: Response) => res.json())
@@ -53,5 +56,25 @@ export class PostService {
     }
     deletePost(id: number): Boolean {
         return true;
+    }
+    sortPostByViewDesc(): Array<Post> {
+        if (this.posts && this.isTren) {
+            return this.posts;
+        }
+        this.isTren = true;
+        const result = new Array<Post>();
+        this.http.get(this.apiUrl)
+            .map((res: Response) => res.json())
+            .subscribe(data => {
+                data.sort((n1, n2) => (Number.parseInt(n1.view) > Number.parseInt(n2.view)) ? -1 : 1);
+                this.posts = data;
+                // console.log('gak ada');
+                data.forEach(post => {
+                    result.push(new Post(post.id, post.title,
+                        post.content, post.category.name,
+                        post.view, post.created_at, post.published_at));
+                });
+            });
+        return result;
     }
 }

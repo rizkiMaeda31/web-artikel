@@ -20,7 +20,7 @@
                 <!--{{item}}-->
                 <td>{{item.id}}</td>
                 <td><a routerLink="/edit/{{item.published_at | date: 'yyyy-MM-dd'}}/{{item.id}}">{{item.title}}</a></td>
-                <td [innerHTML]="item.content.substr(0, 100)"></td>
+                <td [innerHTML]="item.content.substr(0, 50).concat(' ...')"></td>
                 <td>{{item.published_at | date: 'yyyy-MM-dd'}}</td>
                 <td>{{ !item.category.name ? item.category : item.category.name}}</td>
                 <td>{{item.view}}</td>
@@ -33,5 +33,6 @@
         </table>
         <br>
         <button mat-button routerLink="/insert" class="submit">Create New Article</button>
+        <button mat-button class="submit" (click)="logout()">Logout</button>
     <!--</form>-->
 </div>

@@ -27,11 +27,11 @@
       </mat-autocomplete>
     </div>
   </div>
-  Current Published date : {{current_post.published_at | date: 'yyyy-MM-dd'}}
-  <div class="form-group col-12">
-    <label class="col-form-label" for="PublishedAt">Published At</label>
-    <input type="date" [(ngModel)]="tempDate" class="form-control" id="PublishedAt">
-  </div>
+  <!--Current Published date : {{current_post.published_at | date: 'yyyy-MM-dd'}}-->
+  <!--<div class="form-group col-12">-->
+    <!--<label class="col-form-label" for="PublishedAt">Published At</label>-->
+    <!--<input type="date" [(ngModel)]="tempDate" class="form-control" id="PublishedAt">-->
+  <!--</div>-->
   <form [formGroup]="form" class="form-group  col-12">
     <quill-editor #editor [style]="{height: '200px'}"
                   (onEditorCreated)="setFocus($event)"
