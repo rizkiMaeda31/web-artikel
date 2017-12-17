@@ -20,7 +20,12 @@
         <mat-card-title class="title-news-thumbnail">
           <a routerLink="/archives/{{post.created_at}}/{{post.id}}">{{post.title}}</a>
         </mat-card-title>
-        <mat-card-subtitle>{{post.created_at}}</mat-card-subtitle>
+        <mat-card-subtitle>
+          <a routerLink="/date/{{post.created_at}}">{{post.created_at}}</a>{{', '}}
+          <a routerLink="/category/{{ !post.category.name ? post.category : post.category.name}}">
+            {{ !post.category.name ? post.category : post.category.name}}
+          </a>
+        </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content [innerHTML]="post.content.substr(0,50).concat('...see more')">
         <!--{{post.content.substr(0,100)}}-->

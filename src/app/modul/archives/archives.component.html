@@ -10,7 +10,12 @@
       <mat-card-title>
         <h2>{{currentPost.title}}</h2>
       </mat-card-title>
-      <mat-card-subtitle><span>{{currentPost.created_at}}</span></mat-card-subtitle>
+      <mat-card-subtitle>
+        <a routerLink="/date/{{currentPost.created_at}}">{{currentPost.created_at}}</a>{{', '}}
+        <a routerLink="/category/{{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}">
+          {{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}
+        </a>
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content [innerHTML]="currentPost.content">
       <!--<p >-->

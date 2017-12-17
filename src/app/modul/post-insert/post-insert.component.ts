@@ -54,6 +54,12 @@ export class PostInsertComponent implements OnInit {
       this.router.navigate(['post-management']);
   }
   submit() {
+      if (this.newPost.content == '' || this.newPost.title == '' || this.newPost.published_at == null || !this.newPost.category) {
+          this.snackBar.open('Tidak boleh ada yang kosong', 'x', {
+              duration: 2000,
+          });
+          return;
+      }
       this.posts.addPost(this.newPost)
           .then(response => {
             console.log(response);
