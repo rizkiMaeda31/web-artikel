@@ -24,7 +24,6 @@ export class PostInsertComponent implements OnInit {
     filtered: Observable<any[]>;
 
     constructor(public posts: PostService,
-                // route: ActivatedRoute,
                 fb: FormBuilder,
                 public router: Router,
                 public snackBar: MatSnackBar) {
@@ -74,7 +73,7 @@ export class PostInsertComponent implements OnInit {
     }
 
     cancel() {
-        this.router.navigate(['post-management']);
+        this.router.navigate(['post-management']).then(data => location.reload());
     }
 
     leaveAutocomplete(): void{
@@ -105,7 +104,7 @@ export class PostInsertComponent implements OnInit {
                 this.snackBar.open('Berhasil input artikel baru', 'x', {
                     duration: 1000,
                 }).afterDismissed().subscribe(() => {
-                    this.router.navigate(['post-management']);
+                    this.router.navigate(['post-management']).then(data => location.reload());
                 });
             })
             .catch(response => {

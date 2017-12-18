@@ -29,7 +29,8 @@ export class PostManagementComponent implements OnInit {
             this.snackbar.open('Artikel berhasil dihapus', 'X', {duration: 1000})
                          .afterDismissed()
                          .subscribe(() => {
-                             this.router.navigate(['post-management']);
+                             // this.router.navigate(['post-management']);
+                             location.reload();
                          });
         }
     }

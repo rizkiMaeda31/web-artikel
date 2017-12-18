@@ -12,7 +12,7 @@
       </mat-card-title>
       <mat-card-subtitle>
         <a routerLink="/filter/month/{{currentPost.id}}">{{currentPost.created_at}}</a>{{', '}}
-        <a routerLink="/filter/category/{{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}">
+        <a routerLink="/filter/category/{{currentPost.id}}">
           {{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}
         </a>
       </mat-card-subtitle>

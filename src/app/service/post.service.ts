@@ -49,7 +49,7 @@ export class PostService {
         return (this.posts) ? this.posts.find(p => p.id === id) : null;
     }
     getPostsByCategory(category: string): Post[]{
-        return (this.posts) ? this.posts.filter(p => (!p.category.name ? p.category : p.category.name) === category) : [];
+        return (this.posts) ? this.posts.filter(p => (!p.category.name ? p.category : p.category.name) == category) : [];
     }
     getPostByMonth(month: number): Post[]{
         return (this.posts) ? this.posts.filter(p => (new Date(p.published_at)).getMonth() === month) : [];

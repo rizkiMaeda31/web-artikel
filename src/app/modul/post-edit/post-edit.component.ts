@@ -23,12 +23,11 @@ export class PostEditComponent implements OnInit {
   options = [];
   filtered: Observable<any[]>;
   tempDate: Date;
-  constructor(public posts: PostService,
-              route: ActivatedRoute,
+  constructor(route: ActivatedRoute,
               fb: FormBuilder,
               public router: Router,
               public snackBar: MatSnackBar,
-            private postService: PostService) {
+              private postService: PostService) {
       if (localStorage.user === undefined) {
           router.navigate(['login']);
       }
@@ -38,10 +37,10 @@ export class PostEditComponent implements OnInit {
           t_id = Number(p['id']);
           // this.currentPost = posts.posts.find(d => d.created_at == t_ca && d.id == t_id);
       });
-      this.current_post = posts.getAPost(t_id);
+      this.current_post = postService.getAPost(t_id);
       console.log(this.current_post);
       if (this.current_post == null){
-          router.navigate(['post-management']);
+          router.navigate(['post-management']).then(data => location.reload());
       }
       this.form = fb.group({editor: [this.current_post.content]});
       this.temp = this.current_post.content;
@@ -88,17 +87,22 @@ export class PostEditComponent implements OnInit {
       // console.log($event.text);
   }
   cancel() {
-      this.router.navigate(['post-management']);
+      this.router.navigate(['post-management']).then(data => location.reload());
   }
   click() {
-      // if(this.current_post.title)
+      if (this.current_post.content == '' || this.current_post.title == '' || this.tempDate == null || !this.current_post.category) {
+          this.snackBar.open('Tidak boleh ada yang kosong', 'x', {
+              duration: 2000,
+          });
+          return;
+      }
       this.current_post.published_at = this.tempDate;
-      this.posts.updatePost(this.current_post)
+      this.postService.updatePost(this.current_post)
           .then(response => {
               this.snackBar.open('Update sukses', 'x', {
                   duration: 2000,
               }).afterDismissed().subscribe(() => {
-                  this.router.navigate(['post-management']);
+                  this.router.navigate(['post-management']).then(data => location.reload());
               });
           })
       .catch (response => {
