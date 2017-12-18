@@ -52,6 +52,7 @@ import { PostEditComponent } from './modul/post-edit/post-edit.component';
 import {SubscriptionService} from './service/subscription.service';
 import { QuillModule } from 'ngx-quill';
 import { PostInsertComponent } from './modul/post-insert/post-insert.component';
+import { PostFilterComponent } from './modul/post-filter/post-filter.component';
 
 
 
@@ -66,7 +67,8 @@ import { PostInsertComponent } from './modul/post-insert/post-insert.component';
     AdminComponent,
     PostManagementComponent,
     PostEditComponent,
-    PostInsertComponent
+    PostInsertComponent,
+    PostFilterComponent
   ],
   imports: [
       ReactiveFormsModule,
@@ -123,6 +125,10 @@ import { PostInsertComponent } from './modul/post-insert/post-insert.component';
           {
               path: 'archives/:date/:id',
               component: ArchivesComponent
+          },
+          {
+              path: 'filter/:type/:data',
+              component: PostFilterComponent
           },
           {
               path: 'login',

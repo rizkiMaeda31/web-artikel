@@ -11,8 +11,8 @@
         <h2>{{currentPost.title}}</h2>
       </mat-card-title>
       <mat-card-subtitle>
-        <a routerLink="/date/{{currentPost.created_at}}">{{currentPost.created_at}}</a>{{', '}}
-        <a routerLink="/category/{{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}">
+        <a routerLink="/filter/month/{{currentPost.id}}">{{currentPost.created_at}}</a>{{', '}}
+        <a routerLink="/filter/category/{{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}">
           {{ !currentPost.category.name ? currentPost.category : currentPost.category.name}}
         </a>
       </mat-card-subtitle>

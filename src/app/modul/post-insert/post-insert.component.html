@@ -14,16 +14,17 @@
 
       <div class="form-group col-12">
         <label class="col-form-label" for="Category">Category</label>
-          <input [(ngModel)]="newPost.category" type="text" class="form-control" aria-label="Number" id="Category" [formControl]="myControl" [matAutocomplete]="auto" placeholder="Category">
+          <input (blur)="leaveAutocomplete()" [(ngModel)]="newPost.category" type="text" class="form-control" aria-label="Number" id="Category" [formControl]="myControl" [matAutocomplete]="auto" placeholder="Category">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">
-              {{ option }}
+            <mat-option *ngFor="let state of filtered | async" [value]="state">
+              {{ state }}
             </mat-option>
           </mat-autocomplete>
       </div>
+      <div class="alert alert-info col-12" *ngIf="message != ''">{{message}}</div>
       <div class="form-group col-12">
         <label class="col-form-label" for="PublishedAt">Published At</label>
-        <input type="date"  [(ngModel)]="newPost.published_at" class="form-control" id="PublishedAt" placeholder="Title">
+        <input type="date" [min]="getDate()"  [(ngModel)]="newPost.published_at" class="form-control" id="PublishedAt" placeholder="Title">
       </div>
       <form [formGroup]="form" class="form-group  col-12">
         <quill-editor #editor [style]="{height: '200px'}"

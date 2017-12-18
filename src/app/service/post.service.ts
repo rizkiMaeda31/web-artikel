@@ -13,13 +13,7 @@ export class PostService {
 
     constructor(private http: Http) { }
     updatePost(post: Post): any {
-        const result = this.http.put(this.apiUrlUpdate + post.id, {
-            title: post.title,
-            content: post.content,
-            category: post.category.name,
-            published_at: post.published_at,
-            view: post.view
-        }).toPromise();
+        const result = this.http.post(this.apiUrlUpdate + post.id + '/view', {}).toPromise();
         return Promise.resolve(result);
     }
 
@@ -53,6 +47,12 @@ export class PostService {
     }
     getAPost(id: number): Post {
         return (this.posts) ? this.posts.find(p => p.id === id) : null;
+    }
+    getPostsByCategory(category: string): Post[]{
+        return (this.posts) ? this.posts.filter(p => (!p.category.name ? p.category : p.category.name) === category) : [];
+    }
+    getPostByMonth(month: number): Post[]{
+        return (this.posts) ? this.posts.filter(p => (new Date(p.published_at)).getMonth() === month) : [];
     }
     deletePost(id: number): Boolean {
         return true;

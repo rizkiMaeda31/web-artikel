@@ -58,7 +58,9 @@ export class PostEditComponent implements OnInit {
               return this.filter(val);
           });
   }
-
+    getDate():string{
+        return new Date().toJSON().split('T')[0];
+    }
     filter(name: string) {
         return this.options.filter(state => {
             if (typeof(name) === 'object') {
@@ -67,8 +69,8 @@ export class PostEditComponent implements OnInit {
             else{
                 name = name.toLowerCase();
             }
-         return state ? (state.toLowerCase().indexOf(name) === 0) : false
-        });
+         return state ? (state.toLowerCase().indexOf(name) === 0) : false;
+        }).slice(0,10);
     }
   ngOnInit() {
   }

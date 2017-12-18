@@ -21,8 +21,8 @@
                     <a routerLink="/archives/{{post.created_at}}/{{post.id}}">{{post.title}}</a>
                 </mat-card-title>
                 <mat-card-subtitle>
-                    <a routerLink="/date/{{post.created_at}}">{{post.created_at}}</a>{{', '}}
-                    <a routerLink="/category/{{ !post.category.name ? post.category : post.category.name}}">
+                    <a routerLink="/filter/month/{{post.id}}">{{post.created_at}}</a>{{', '}}
+                    <a routerLink="/filter/category/{{post.id}}">
                         {{ !post.category.name ? post.category : post.category.name}}
                     </a>
                 </mat-card-subtitle>
