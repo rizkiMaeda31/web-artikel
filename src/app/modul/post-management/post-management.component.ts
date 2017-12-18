@@ -25,14 +25,14 @@ export class PostManagementComponent implements OnInit {
     }
 
     deleteArticle(id): void {
-        if (this.postservice.deletePost(id)) {
+        this.postservice.deletePost(id).then(response =>{
             this.snackbar.open('Artikel berhasil dihapus', 'X', {duration: 1000})
-                         .afterDismissed()
-                         .subscribe(() => {
-                             // this.router.navigate(['post-management']);
-                             location.reload();
-                         });
-        }
+                .afterDismissed()
+                .subscribe(() => {
+                    // this.router.navigate(['post-management']);
+                    location.reload();
+                });
+        }).catch(r =>console.log(r));
     }
 
     logout(): void {

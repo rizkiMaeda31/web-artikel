@@ -54,8 +54,8 @@ export class PostService {
     getPostByMonth(month: number): Post[]{
         return (this.posts) ? this.posts.filter(p => (new Date(p.published_at)).getMonth() === month) : [];
     }
-    deletePost(id: number): Boolean {
-        return true;
+    deletePost(id: number): any {
+        return Promise.resolve(this.http.delete(this.apiUrlUpdate + id).toPromise());
     }
     sortPostByViewDesc(): Array<Post> {
         if (this.posts && this.isTren) {
