@@ -39,4 +39,8 @@ export class PostManagementComponent implements OnInit {
         localStorage.clear();
         this.router.navigate(['login']);
     }
+
+    insert() {
+        this.router.navigate(['insert']);
+    }
 }

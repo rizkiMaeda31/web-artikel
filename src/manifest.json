@@ -3,19 +3,14 @@
   "short_name": "WAPWA",
   "icons": [
     {
-      "src": "assets/artikel-logo.png",
-      "sizes": "192x192",
-      "type": "image\/png"
-    },
-    {
-      "src": "assets/artikel-logo.png",
-      "sizes": "384x384",
+      "src": "/assets/icon_xl.png",
+      "sizes": "144x144",
       "type": "image\/png"
     }
   ],
   "theme_color": "#F8B713",
   "background_color": "#ffff00",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "start_url": "./?utm_source=web_app_manifest"
 }
